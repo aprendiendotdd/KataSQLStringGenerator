@@ -9,7 +9,14 @@ namespace SQLStringGenerator
   {
     public string GetSentence(string table, string[] columns)
     {
-      return "SELECT " + columns[0] + " FROM " + table;
+      if (columns.Count() == 1)
+      {
+        return "SELECT " + columns[0] + " FROM " + table;
+      }
+      else {
+        return "SELECT " + columns[0] + "," + columns[1] + " FROM " + table;
+      }
+      
     }
   }
 }
