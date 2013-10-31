@@ -21,7 +21,7 @@ namespace SQLStringGenerator
     public const string CERRAR_PARENTESIS = ")";
     private const string UPDATE = "UPDATE ";
     private const string SET = " SET ";
-
+    
     public string GetSentenceSelect(string table, string[] columns)
     {
       StringBuilder stringBuilder = new StringBuilder().Append(SELECT);
