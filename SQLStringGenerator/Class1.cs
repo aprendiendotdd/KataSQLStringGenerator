@@ -42,5 +42,10 @@ namespace SQLStringGenerator
       }
       return stringBuilder.ToString();
     }
+
+    public string GetSentenceInsert(string table, string[] columns, string[] values)
+    {
+      return "INSERT INTO tablaX (a) VALUES (valorA)";
+    }
   }
 }

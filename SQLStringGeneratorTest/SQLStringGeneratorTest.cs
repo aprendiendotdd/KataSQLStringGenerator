@@ -42,5 +42,12 @@ namespace SQLStringGeneratorTest
       Assert.AreEqual("DELETE FROM x WHERE a = valorA AND b = valorB AND c = valorC", class1.GetSentenceDelete("x", new string[] { "a", "b", "c" }, new string[] { "valorA", "valorB", "valorC" }));
       Assert.AreEqual("DELETE FROM z WHERE c = valorC AND d = valorD AND e = valorE", class1.GetSentenceDelete("z", new string[] { "c", "d", "e" }, new string[] { "valorC", "valorD", "valorE" }));
     }
+
+    [Test]
+    public void Insert_Tabla_A_Una_Columna() 
+    {
+      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      Assert.AreEqual("INSERT INTO tablaX (a) VALUES (valorA)", class1.GetSentenceInsert("x", new string[] { "a" }, new string[] { "valorA" }));
+    }
   }
 }
