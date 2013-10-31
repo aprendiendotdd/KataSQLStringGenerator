@@ -25,9 +25,13 @@ namespace SQLStringGenerator
       return stringBuilder.ToString();
     }
 
-    public string GetSentenceDelete(string table)
+    public string GetSentenceDelete(string table) {
+      return "DELETE FROM " + table;
+    }
+
+    public string GetSentenceDelete(string table, string[] columns, string[] values)
     {
-      return "DELETE FROM x";
+      return "DELETE FROM " + table + " WHERE " + columns[0] + " = " + values[0];
     }
   }
 }

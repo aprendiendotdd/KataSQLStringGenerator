@@ -29,5 +29,13 @@ namespace SQLStringGeneratorTest
       SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x", class1.GetSentenceDelete("x"));
     }
+
+    [Test]
+    public void Delete_Tabla_Filtrando_Por_Un_Campo()
+    {
+      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      Assert.AreEqual("DELETE FROM x WHERE a = valorA", class1.GetSentenceDelete("x", new string[] { "a" }, new string[] { "valorA" }));
+      Assert.AreEqual("DELETE FROM z WHERE c = valorC", class1.GetSentenceDelete("z", new string[] { "c" }, new string[] { "valorC" }));
+    }
   }
 }
