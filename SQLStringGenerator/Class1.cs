@@ -14,6 +14,7 @@ namespace SQLStringGenerator
     private const string WHERE = " WHERE ";
     private const string EQUAL = " = ";
     private const string AND = " AND ";
+    private const string COMMA = ",";
 
     public string GetSentenceSelect(string table, string[] columns)
     {
@@ -21,7 +22,7 @@ namespace SQLStringGenerator
       for (int i = 0; i < columns.Length; i++)
       {
         stringBuilder.Append(columns[i]);
-        if (i != columns.Length - 1) stringBuilder.Append(",");
+        if (i != columns.Length - 1) stringBuilder.Append(COMMA);
       }
       stringBuilder.Append(FROM + table);
       return stringBuilder.ToString();

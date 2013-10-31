@@ -28,28 +28,17 @@ namespace SQLStringGeneratorTest
     public void Delete_Tabla() {
       SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x", class1.GetSentenceDelete("x"));
+      Assert.AreEqual("DELETE FROM y", class1.GetSentenceDelete("y"));
     }
 
     [Test]
-    public void Delete_Tabla_Filtrando_Por_Un_Campo()
+    public void Delete_Tabla_Filtrando_Por_Uno_O_Varios_Campos()
     {
       SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x WHERE a = valorA", class1.GetSentenceDelete("x", new string[] { "a" }, new string[] { "valorA" }));
       Assert.AreEqual("DELETE FROM z WHERE c = valorC", class1.GetSentenceDelete("z", new string[] { "c" }, new string[] { "valorC" }));
-    }
-
-    [Test]
-    public void Delete_Tabla_Filtrando_Por_Dos_Campos()
-    {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x WHERE a = valorA AND b = valorB", class1.GetSentenceDelete("x", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
       Assert.AreEqual("DELETE FROM z WHERE c = valorC AND d = valorD", class1.GetSentenceDelete("z", new string[] { "c", "d" }, new string[] { "valorC", "valorD" }));
-    }
-
-    [Test]
-    public void Delete_Tabla_Filtrando_Por_Tres_Campos()
-    {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x WHERE a = valorA AND b = valorB AND c = valorC", class1.GetSentenceDelete("x", new string[] { "a", "b", "c" }, new string[] { "valorA", "valorB", "valorC" }));
       Assert.AreEqual("DELETE FROM z WHERE c = valorC AND d = valorD AND e = valorE", class1.GetSentenceDelete("z", new string[] { "c", "d", "e" }, new string[] { "valorC", "valorD", "valorE" }));
     }
