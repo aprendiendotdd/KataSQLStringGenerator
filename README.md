@@ -1,4 +1,0 @@
-kataSQLStringGenerator
-======================
-
-kataSQLStringGenerator
