@@ -54,5 +54,18 @@ namespace SQLStringGeneratorTest
       Assert.AreEqual("INSERT INTO tablaX (a,b,c) VALUES (valorA,valorB,valorC)", class1.GetSentenceInsert("tablaX", new string[] { "a", "b", "c" }, new string[] { "valorA", "valorB", "valorC" }));
       Assert.AreEqual("INSERT INTO tablaY (b,c,d) VALUES (valorB,valorC,valorD)", class1.GetSentenceInsert("tablaY", new string[] { "b", "c", "d" }, new string[] { "valorB", "valorC", "valorD" }));
     }
+
+    [Test]
+    public void Update_Tabla_A_Una_O_Varias_Columnas()
+    {
+      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      Assert.AreEqual("UPDATE tablaX SET a = valorA", class1.GetSentenceUpdate("tablaX", new string[] { "a" }, new string[] { "valorA" }));
+      Assert.AreEqual("UPDATE tablaY SET b = valorB", class1.GetSentenceUpdate("tablaY", new string[] { "b" }, new string[] { "valorB" }));
+      Assert.AreEqual("UPDATE tablaX SET a = valorA,b = valorB", class1.GetSentenceUpdate("tablaX", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
+      Assert.AreEqual("UPDATE tablaX SET f = valorF,g = valorG", class1.GetSentenceUpdate("tablaX", new string[] { "f", "g" }, new string[] { "valorF", "valorG" }));
+      Assert.AreEqual("UPDATE tablaX SET a = valorA,b = valorB,c = valorC", class1.GetSentenceUpdate("tablaX", new string[] { "a", "b", "c" }, new string[] { "valorA", "valorB", "valorC" }));
+      Assert.AreEqual("UPDATE tablaX SET f = valorF,g = valorG,z = valorZ", class1.GetSentenceUpdate("tablaX", new string[] { "f", "g", "z" }, new string[] { "valorF", "valorG", "valorZ" }));
+    }
+    
   }
 }

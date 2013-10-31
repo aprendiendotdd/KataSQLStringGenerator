@@ -19,6 +19,8 @@ namespace SQLStringGenerator
     public const string VALUES=" VALUES";
     public const string ABRIR_PARENTESIS = " (";
     public const string CERRAR_PARENTESIS = ")";
+    private const string UPDATE = "UPDATE ";
+    private const string SET = " SET ";
 
     public string GetSentenceSelect(string table, string[] columns)
     {
@@ -44,7 +46,7 @@ namespace SQLStringGenerator
         stringBuilder.Append(columns[i] + EQUAL + values[i]);
         if (i != columns.Length - 1) stringBuilder.Append(AND);
       }
-      return stringBuilder.ToString();
+      return stringBuilder.ToString(); 
     }
 
     public string GetSentenceInsert(string table, string[] columns, string[] values)
@@ -61,6 +63,17 @@ namespace SQLStringGenerator
         stringBuilder.Append(values[i]);
         if (i == columns.Length - 1) stringBuilder.Append(CERRAR_PARENTESIS);
         else  stringBuilder.Append(COMMA); 
+      }
+      return stringBuilder.ToString();
+    }
+
+    public object GetSentenceUpdate(string table, string[] columns, string[] values)
+    {
+      StringBuilder stringBuilder = new StringBuilder().Append(UPDATE + table + SET);
+      for (int i = 0; i < columns.Length; i++) 
+      {
+        stringBuilder.Append(columns[i] + EQUAL + values[i]);
+        if (i != columns.Length - 1) stringBuilder.Append(COMMA);
       }
       return stringBuilder.ToString();
     }
