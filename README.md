@@ -1,0 +1,4 @@
+kataSQLStringGenerator
+======================
+
+kataSQLStringGenerator
