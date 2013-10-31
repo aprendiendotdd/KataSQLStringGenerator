@@ -24,5 +24,10 @@ namespace SQLStringGenerator
       stringBuilder.Append(FROM + table);
       return stringBuilder.ToString();
     }
+
+    public string GetSentenceDelete(string table)
+    {
+      return "DELETE FROM x";
+    }
   }
 }

@@ -23,5 +23,11 @@ namespace SQLStringGeneratorTest
       Assert.AreEqual("SELECT b,c,d FROM x", class1.GetSentenceSelect("x", new string[] { "b", "c", "d" }));
       Assert.AreEqual("SELECT c,d,e FROM y", class1.GetSentenceSelect("y", new string[] { "c", "d", "e" }));
     }
+
+    [Test]
+    public void Delete_Tabla() {
+      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      Assert.AreEqual("DELETE FROM x", class1.GetSentenceDelete("x"));
+    }
   }
 }
