@@ -5,18 +5,24 @@ using System.Text;
 
 namespace SQLStringGenerator
 {
+  
   public class Class1
   {
-    public string GetSentence(string table, string[] columns)
+    private const string SELECT = "SELECT ";
+    private const string FROM = " FROM ";
+
+    public string GetSentenceSelect(string table, string[] columns)
     {
-      if (columns.Count() == 1)
+      StringBuilder stringBuilder = new StringBuilder().Append(SELECT);
+      for (int i = 0; i < columns.Length; i++)
       {
-        return "SELECT " + columns[0] + " FROM " + table;
+        if (i == columns.Length - 1)
+          stringBuilder.Append(columns[i]);
+        else
+          stringBuilder.Append(columns[i] + ",");
       }
-      else {
-        return "SELECT " + columns[0] + "," + columns[1] + " FROM " + table;
-      }
-      
+      stringBuilder.Append(FROM + table);
+      return stringBuilder.ToString();
     }
   }
 }
