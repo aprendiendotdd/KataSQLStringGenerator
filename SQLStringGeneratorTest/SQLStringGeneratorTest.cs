@@ -44,10 +44,15 @@ namespace SQLStringGeneratorTest
     }
 
     [Test]
-    public void Insert_Tabla_A_Una_Columna() 
+    public void Insert_Tabla_A_Una_O_Varias_Columnas() 
     {
       SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
-      Assert.AreEqual("INSERT INTO tablaX (a) VALUES (valorA)", class1.GetSentenceInsert("x", new string[] { "a" }, new string[] { "valorA" }));
+      Assert.AreEqual("INSERT INTO tablaX (a) VALUES (valorA)", class1.GetSentenceInsert("tablaX", new string[] { "a" }, new string[] { "valorA" }));
+      Assert.AreEqual("INSERT INTO tablaY (b) VALUES (valorB)", class1.GetSentenceInsert("tablaY", new string[] { "b" }, new string[] { "valorB" }));
+      Assert.AreEqual("INSERT INTO tablaX (a,b) VALUES (valorA,valorB)", class1.GetSentenceInsert("tablaX", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
+      Assert.AreEqual("INSERT INTO tablaY (b,c) VALUES (valorB,valorC)", class1.GetSentenceInsert("tablaY", new string[] { "b", "c" }, new string[] { "valorB", "valorC" }));
+      Assert.AreEqual("INSERT INTO tablaX (a,b,c) VALUES (valorA,valorB,valorC)", class1.GetSentenceInsert("tablaX", new string[] { "a", "b", "c" }, new string[] { "valorA", "valorB", "valorC" }));
+      Assert.AreEqual("INSERT INTO tablaY (b,c,d) VALUES (valorB,valorC,valorD)", class1.GetSentenceInsert("tablaY", new string[] { "b", "c", "d" }, new string[] { "valorB", "valorC", "valorD" }));
     }
   }
 }

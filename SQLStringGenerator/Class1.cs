@@ -15,6 +15,10 @@ namespace SQLStringGenerator
     private const string EQUAL = " = ";
     private const string AND = " AND ";
     private const string COMMA = ",";
+    private const string INSERT_INTO = "INSERT INTO ";
+    public const string VALUES=" VALUES";
+    public const string ABRIR_PARENTESIS = " (";
+    public const string CERRAR_PARENTESIS = ")";
 
     public string GetSentenceSelect(string table, string[] columns)
     {
@@ -45,7 +49,20 @@ namespace SQLStringGenerator
 
     public string GetSentenceInsert(string table, string[] columns, string[] values)
     {
-      return "INSERT INTO tablaX (a) VALUES (valorA)";
+      StringBuilder stringBuilder = new StringBuilder().Append(INSERT_INTO + table + ABRIR_PARENTESIS);
+      for (int i = 0; i < columns.Length; i++)
+      {
+        stringBuilder.Append(columns[i]);
+        if (i == columns.Length - 1) stringBuilder.Append(CERRAR_PARENTESIS + VALUES + ABRIR_PARENTESIS);
+        else stringBuilder.Append(COMMA);
+      }
+      for (int i = 0; i < values.Length; i++) 
+      {
+        stringBuilder.Append(values[i]);
+        if (i == columns.Length - 1) stringBuilder.Append(CERRAR_PARENTESIS);
+        else  stringBuilder.Append(COMMA); 
+      }
+      return stringBuilder.ToString();
     }
   }
 }
