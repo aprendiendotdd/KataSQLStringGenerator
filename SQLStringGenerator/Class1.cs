@@ -1,79 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace SQLStringGenerator
 {
   
   public class Class1
   {
-    private const string SELECT = "SELECT ";
-    private const string FROM = " FROM ";
-    private const string DELETE = "DELETE";
-    private const string WHERE = " WHERE ";
-    private const string EQUAL = " = ";
-    private const string AND = " AND ";
-    private const string COMMA = ",";
-    private const string INSERT_INTO = "INSERT INTO ";
-    public const string VALUES=" VALUES";
-    public const string ABRIR_PARENTESIS = " (";
-    public const string CERRAR_PARENTESIS = ")";
-    private const string UPDATE = "UPDATE ";
-    private const string SET = " SET ";
+    private const string Select = "SELECT ";
+    private const string From = " FROM ";
+    private const string Delete = "DELETE";
+    private const string Where = " WHERE ";
+    private const string Equal = " = ";
+    private const string And = " AND ";
+    private const string Comma = ",";
+    private const string InsertInto = "INSERT INTO ";
+    public const string Values=" VALUES";
+    public const string AbrirParentesis = " (";
+    public const string CerrarParentesis = ")";
+    private const string Update = "UPDATE ";
+    private const string Set = " SET ";
     
     public string GetSentenceSelect(string table, string[] columns)
     {
-      StringBuilder stringBuilder = new StringBuilder().Append(SELECT);
-      for (int i = 0; i < columns.Length; i++)
+      var stringBuilder = new StringBuilder().Append(Select);
+      for (var i = 0; i < columns.Length; i++)
       {
         stringBuilder.Append(columns[i]);
-        if (i != columns.Length - 1) stringBuilder.Append(COMMA);
+        if (i != columns.Length - 1) stringBuilder.Append(Comma);
       }
-      stringBuilder.Append(FROM + table);
+      stringBuilder.Append(From + table);
       return stringBuilder.ToString();
     }
 
     public string GetSentenceDelete(string table) {
-      return DELETE + FROM + table;
+      return Delete + From + table;
     }
 
     public string GetSentenceDelete(string table, string[] columns, string[] values)
     {
-      StringBuilder stringBuilder = new StringBuilder().Append(DELETE + FROM + table + WHERE);
-      for (int i = 0; i < columns.Length; i++)
+      var stringBuilder = new StringBuilder().Append(Delete + From + table + Where);
+      for (var i = 0; i < columns.Length; i++)
       {
-        stringBuilder.Append(columns[i] + EQUAL + values[i]);
-        if (i != columns.Length - 1) stringBuilder.Append(AND);
+        stringBuilder.Append(columns[i] + Equal + values[i]);
+        if (i != columns.Length - 1) stringBuilder.Append(And);
       }
       return stringBuilder.ToString(); 
     }
 
     public string GetSentenceInsert(string table, string[] columns, string[] values)
     {
-      StringBuilder stringBuilder = new StringBuilder().Append(INSERT_INTO + table + ABRIR_PARENTESIS);
-      for (int i = 0; i < columns.Length; i++)
+      var stringBuilder = new StringBuilder().Append(InsertInto + table + AbrirParentesis);
+      for (var i = 0; i < columns.Length; i++)
       {
         stringBuilder.Append(columns[i]);
-        if (i == columns.Length - 1) stringBuilder.Append(CERRAR_PARENTESIS + VALUES + ABRIR_PARENTESIS);
-        else stringBuilder.Append(COMMA);
+        if (i == columns.Length - 1) stringBuilder.Append(CerrarParentesis + Values + AbrirParentesis);
+        else stringBuilder.Append(Comma);
       }
-      for (int i = 0; i < values.Length; i++) 
+      for (var i = 0; i < values.Length; i++)
       {
         stringBuilder.Append(values[i]);
-        if (i == columns.Length - 1) stringBuilder.Append(CERRAR_PARENTESIS);
-        else  stringBuilder.Append(COMMA); 
+        stringBuilder.Append(i == columns.Length - 1 ? CerrarParentesis : Comma);
       }
       return stringBuilder.ToString();
     }
 
     public object GetSentenceUpdate(string table, string[] columns, string[] values)
     {
-      StringBuilder stringBuilder = new StringBuilder().Append(UPDATE + table + SET);
-      for (int i = 0; i < columns.Length; i++) 
+      var stringBuilder = new StringBuilder().Append(Update + table + Set);
+      for (var i = 0; i < columns.Length; i++) 
       {
-        stringBuilder.Append(columns[i] + EQUAL + values[i]);
-        if (i != columns.Length - 1) stringBuilder.Append(COMMA);
+        stringBuilder.Append(columns[i] + Equal + values[i]);
+        if (i != columns.Length - 1) stringBuilder.Append(Comma);
       }
       return stringBuilder.ToString();
     }

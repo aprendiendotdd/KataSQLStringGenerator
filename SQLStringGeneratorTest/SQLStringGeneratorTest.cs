@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace SQLStringGeneratorTest
 {
@@ -12,7 +8,7 @@ namespace SQLStringGeneratorTest
     [Test]
     public void Select_Sobre_Uno_O_Varios_Campos()
     {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      var class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("SELECT a FROM x", class1.GetSentenceSelect("x", new string[] { "a" }));
       Assert.AreEqual("SELECT b FROM x", class1.GetSentenceSelect("x", new string[] { "b" }));
       Assert.AreEqual("SELECT c FROM y", class1.GetSentenceSelect("y", new string[] { "c" }));
@@ -26,7 +22,7 @@ namespace SQLStringGeneratorTest
 
     [Test]
     public void Delete_Tabla() {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      var class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x", class1.GetSentenceDelete("x"));
       Assert.AreEqual("DELETE FROM y", class1.GetSentenceDelete("y"));
     }
@@ -34,7 +30,7 @@ namespace SQLStringGeneratorTest
     [Test]
     public void Delete_Tabla_Filtrando_Por_Uno_O_Varios_Campos()
     {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      var class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("DELETE FROM x WHERE a = valorA", class1.GetSentenceDelete("x", new string[] { "a" }, new string[] { "valorA" }));
       Assert.AreEqual("DELETE FROM z WHERE c = valorC", class1.GetSentenceDelete("z", new string[] { "c" }, new string[] { "valorC" }));
       Assert.AreEqual("DELETE FROM x WHERE a = valorA AND b = valorB", class1.GetSentenceDelete("x", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
@@ -46,7 +42,7 @@ namespace SQLStringGeneratorTest
     [Test]
     public void Insert_Tabla_A_Una_O_Varias_Columnas() 
     {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      var class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("INSERT INTO tablaX (a) VALUES (valorA)", class1.GetSentenceInsert("tablaX", new string[] { "a" }, new string[] { "valorA" }));
       Assert.AreEqual("INSERT INTO tablaY (b) VALUES (valorB)", class1.GetSentenceInsert("tablaY", new string[] { "b" }, new string[] { "valorB" }));
       Assert.AreEqual("INSERT INTO tablaX (a,b) VALUES (valorA,valorB)", class1.GetSentenceInsert("tablaX", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
@@ -58,7 +54,7 @@ namespace SQLStringGeneratorTest
     [Test]
     public void Update_Tabla_A_Una_O_Varias_Columnas()
     {
-      SQLStringGenerator.Class1 class1 = new SQLStringGenerator.Class1();
+      var class1 = new SQLStringGenerator.Class1();
       Assert.AreEqual("UPDATE tablaX SET a = valorA", class1.GetSentenceUpdate("tablaX", new string[] { "a" }, new string[] { "valorA" }));
       Assert.AreEqual("UPDATE tablaY SET b = valorB", class1.GetSentenceUpdate("tablaY", new string[] { "b" }, new string[] { "valorB" }));
       Assert.AreEqual("UPDATE tablaX SET a = valorA,b = valorB", class1.GetSentenceUpdate("tablaX", new string[] { "a", "b" }, new string[] { "valorA", "valorB" }));
